@@ -41,7 +41,7 @@ def sign(kms_key_id, payload=dict()):
     token = "{}.{}.{}".format(
         token_components["header"],
         token_components["payload"],
-        base64.b64encode(response['CiphertextBlob'].encode('ASCII'))
+        base64.b64encode(response['CiphertextBlob'])
     )
 
     return token
