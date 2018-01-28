@@ -44,7 +44,7 @@ def sign(kms_key_id, payload=dict()):
         base64.b64encode(response['CiphertextBlob'])
     )
 
-    return token
+    return str(token)
 
 def verify(token):
     header = token.split('.')[0]
