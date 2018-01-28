@@ -28,7 +28,6 @@ def test_sign(mock_kms_client):
     }
     test_kms_key_id = 'a1b2c3-d4e5f6-g7h8i9-j0k1l2'
     response = sign(payload=test_payload, kms_key_id=test_kms_key_id)
-    print response
     assert response == 'eyJhbGciOiAiS01TIiwgInR5cCI6ICJKV1QifQ==.eyJpYXQiOiAxNTE3MTc2OTczLCAidGhpc19pcyI6ICJhX3Rlc3QiLCAiZXhwIjogMTUxNzE3Njk3M30=.PT1RUHdNVFR6c21hT05UUjY1RWVWUlZUbjltYUpkSGFZcFZhQk5FVHBGMU1qeG1VemdGYUtOVVMya1VlakJYT3hNR2NvZEVacEYwUU1wM1lVOWtNalJWVHpVRVZPaFhRcDlVYVJoVld3cFVlbDVTUDlFbFpwRlZNV3RrU0Rsa05KTjBZMUlsYkpkMmRwbEVWeEF6VXBGVWFQbDJZSEpHYUtsWFo='
 
 @mock.patch('jwtkms.token._kms_client')
