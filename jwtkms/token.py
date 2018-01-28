@@ -22,8 +22,8 @@ def sign(kms_key_id, payload=dict()):
         pl['iat'] = issued_at
 
     token_components = {
-        "header": base64.b64encode(json.dumps(header)),
-        "payload": base64.b64encode(json.dumps(pl))
+        "header": base64.b64encode(json.dumps(header).encode('ASCII')),
+        "payload": base64.b64encode(json.dumps(pl).encode('ASCII'))
     }
 
     client = _kms_client()
@@ -34,14 +34,14 @@ def sign(kms_key_id, payload=dict()):
             "{}.{}".format(
                 token_components["header"],
                 token_components["payload"]
-            )
+            ).encode('ASCII')
         )
     )
     
     token = "{}.{}.{}".format(
         token_components["header"],
         token_components["payload"],
-        base64.b64encode(response['CiphertextBlob'])
+        base64.b64encode(response['CiphertextBlob'].encode('ASCII'))
     )
 
     return token

@@ -67,7 +67,7 @@ def test_verify(mock_kms_client):
         changed_payload['this_is'] = 'an_attack'
 
         changed_jwt = response.split('.')
-        changed_jwt[1] = base64.b64encode(json.dumps(changed_payload))
+        changed_jwt[1] = base64.b64encode(json.dumps(changed_payload).encode('ASCII'))
         changed_jwt = '.'.join(changed_jwt)
         verify(token=changed_jwt)
 
