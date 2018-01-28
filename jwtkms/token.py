@@ -52,8 +52,8 @@ def verify(token):
     signature = base64.b64decode(token.split('.')[2])
     client = _kms_client()
 
-    iat = json.loads(base64.b64decode(payload))['iat']
-    exp = json.loads(base64.b64decode(payload))['exp']
+    iat = json.loads(base64.b64decode(payload).decode('utf-8'))['iat']
+    exp = json.loads(base64.b64decode(payload).decode('utf-8'))['exp']
 
     if iat > int(time.time()):
         raise ValueError('Token was created before now')
